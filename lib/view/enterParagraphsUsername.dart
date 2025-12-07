@@ -80,10 +80,8 @@ class _ShuffleState extends State<Shuffle> {
                   // USERNAME INPUT
                   SizedBox(
                     width: 350,
-                    height: 100,
+                    height: 80,
                     child: Container(
-                        height: 40,
-                        width: 40,
                         margin: const EdgeInsets.only(top: 16),
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
