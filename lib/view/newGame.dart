@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'assetTextures/homeButtons.dart';
 import 'assetTextures/gradientText.dart';
+import '/view/newGame.dart';
+
+void main() => runApp(NewGame());
 
 class NewGame extends StatelessWidget {
   const NewGame({super.key});
@@ -11,56 +14,78 @@ class NewGame extends StatelessWidget {
     return MaterialApp (
       home: Scaffold (
         body: Center (
-          child: Column (
-            children: [
-              // TEXT
-              const SizedBox(height: 148),
-              Text(
-                  'GAME MODE',
-                  style: TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.bold,
-                    foreground: Paint()..shader = gradientText,
-                  )
+            child: Container (
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [
+                      Color(0xFF322756),
+                      Color(0xFF1E1733),
+                      Color(0xFF161126),
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment. bottomCenter
+                ),
               ),
-              // NEW GAME BUTTON
-              const SizedBox(height: 20),
-              SizedBox(
-                  width: 300,
-                  height: 75,
-                  child:
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: homeButtonStyle,
-                    child: Text('Shuffle'),
-                  )
+              child: Column (
+                children: [
+                  // TEXT
+                  const SizedBox(height: 148),
+                  Text(
+                      'GAME MODE',
+                      style: TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
+                        foreground: Paint()
+                          ..shader = gradientText,
+                      )
+                  ),
+                  // LINE
+                  const Divider(
+                      height: 0,
+                      thickness: 1,
+                      indent: 15,
+                      endIndent: 15,
+                      color: Colors.grey
+                  ),
+                  // NEW GAME BUTTON
+                  const SizedBox(height: 20),
+                  SizedBox(
+                      width: 300,
+                      height: 75,
+                      child:
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: homeButtonStyle,
+                        child: Text('Shuffle'),
+                      )
+                  ),
+                  // CREDITS BUTTON
+                  const SizedBox(height: 32),
+                  SizedBox(
+                      width: 300,
+                      height: 75,
+                      child:
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: homeButtonStyle,
+                        child: Text('Paragraphs'),
+                      )
+                  ),
+                  // EXIT BUTTON
+                  const SizedBox(height: 32),
+                  SizedBox(
+                      width: 300,
+                      height: 75,
+                      child:
+                      ElevatedButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: homeButtonStyle,
+                        child: Text('Back'),
+                      )
+                  ),
+                ],
               ),
-              // PARAGRAPHS BUTTON
-              const SizedBox(height: 32),
-              SizedBox(
-                  width: 300,
-                  height: 75,
-                  child:
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: homeButtonStyle,
-                    child: Text('Paragraphs'),
-                  )
-              ),
-              // EXIT BUTTON
-              const SizedBox(height: 32),
-              SizedBox(
-                  width: 300,
-                  height: 75,
-                  child:
-                  ElevatedButton(
-                    onPressed: () => Navigator.pop(context),
-                    style: homeButtonStyle,
-                    child: Text('Back'),
-                  )
-              ),
-            ],
-          ),
+            )
         ),
       ),
       theme: ThemeData(scaffoldBackgroundColor: const Color(0xFF1A1523)),
