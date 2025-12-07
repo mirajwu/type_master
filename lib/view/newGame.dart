@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'assetTextures/homeButtons.dart';
-import 'assetTextures/gradientText.dart';
+import 'styles/buttonStyles.dart';
+import 'styles/textStyles.dart';
 import '/view/newGame.dart';
 
 void main() => runApp(NewGame());

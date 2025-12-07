@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'assetTextures/homeButtons.dart';
-import 'assetTextures/gradientText.dart';
+import 'package:type_master_game/view/creditsDialog.dart';
+import 'package:type_master_game/view/leaderboardDialog.dart';
+import 'styles/buttonStyles.dart';
+import 'styles/textStyles.dart';
 import '/view/newGame.dart';
 
 void main() => runApp(TypeMaster());
@@ -48,7 +50,7 @@ class TypeMaster extends StatelessWidget {
                     color: Colors.grey
                 ),
                 // NEW GAME BUTTON
-                const SizedBox(height: 20),
+                const SizedBox(height: 32),
                 SizedBox(
                     width: 300,
                     height: 75,
@@ -71,55 +73,7 @@ class TypeMaster extends StatelessWidget {
                       onPressed: () {
                         showDialog (
                           context: context,
-                          builder: (context) => Dialog(
-                            child: Container (
-                              decoration: BoxDecoration(
-                                color: Color(0xFF3F4689),
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: Column (
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    'Leaderboard',
-                                    style: GoogleFonts.roboto(
-                                      fontSize: 24,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold
-                                    ),
-                                  ),
-                                  Row (
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    children: [
-                                      TextButton(
-                                        onPressed: () {},
-                                        style: TextButton.styleFrom (
-                                          foregroundColor: Colors.white,
-                                        ),
-                                        child: Text('Shuffle'),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {},
-                                        style: TextButton.styleFrom (
-                                          foregroundColor: Colors.white,
-                                        ),
-                                        child: Text('Paragraphs'),
-                                      )
-                                    ],
-                                  ),
-                                  const Divider(
-                                      height: 0,
-                                      thickness: 1,
-                                      indent: 25,
-                                      endIndent: 25,
-                                      color: Colors.grey
-                                  ),
-                                  const SizedBox(height: 512),
-                                ],
-                              )
-                            ),
-                          ),
+                          builder: (context) => const LeaderboardDialogBox()
                         );
                       },
                       style: homeButtonStyle,
@@ -133,7 +87,12 @@ class TypeMaster extends StatelessWidget {
                     height: 75,
                     child:
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog (
+                            context: context,
+                            builder: (context) => const CreditsDialogBox()
+                        );
+                      },
                       style: homeButtonStyle,
                       child: Text('Credits'),
                     )
