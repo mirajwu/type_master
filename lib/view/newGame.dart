@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:type_master_game/view/enterShuffleUsername.dart';
 import 'styles/buttonStyles.dart';
 import 'styles/textStyles.dart';
-import '/view/newGame.dart';
 
 void main() => runApp(NewGame());
 
@@ -28,8 +28,30 @@ class NewGame extends StatelessWidget {
               ),
               child: Column (
                 children: [
+                  SizedBox(
+                    height: 128,
+                    width: 400,
+                    child: Row (
+                      children: [
+                        OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                                padding: const EdgeInsets.all(8),
+                                shape: const CircleBorder(),
+                                backgroundColor: Colors.transparent,
+                                side: BorderSide.none
+                            ),
+                            onPressed: () => Navigator.pop(context),
+                            child: Icon(
+                              Icons.arrow_back_ios_new_rounded,
+                              color: Colors.white,
+                              size: 32,
+                            )
+                        ),
+                      ],
+                    ),
+                  ),
                   // TEXT
-                  const SizedBox(height: 148),
+                  const SizedBox(height: 20),
                   Text(
                       'GAME MODE',
                       style: TextStyle(
@@ -45,7 +67,7 @@ class NewGame extends StatelessWidget {
                       thickness: 1,
                       indent: 15,
                       endIndent: 15,
-                      color: Colors.grey
+                      color: Colors.white
                   ),
                   // NEW GAME BUTTON
                   const SizedBox(height: 20),
@@ -54,7 +76,9 @@ class NewGame extends StatelessWidget {
                       height: 75,
                       child:
                       ElevatedButton(
-                        onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Shuffle()));
+                          },
                         style: homeButtonStyle,
                         child: Text('Shuffle'),
                       )
@@ -69,18 +93,6 @@ class NewGame extends StatelessWidget {
                         onPressed: () {},
                         style: homeButtonStyle,
                         child: Text('Paragraphs'),
-                      )
-                  ),
-                  // EXIT BUTTON
-                  const SizedBox(height: 32),
-                  SizedBox(
-                      width: 300,
-                      height: 75,
-                      child:
-                      ElevatedButton(
-                        onPressed: () => Navigator.pop(context),
-                        style: homeButtonStyle,
-                        child: Text('Back'),
                       )
                   ),
                 ],

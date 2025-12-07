@@ -47,7 +47,7 @@ class TypeMaster extends StatelessWidget {
                     thickness: 1,
                     indent: 15,
                     endIndent: 15,
-                    color: Colors.grey
+                    color: Colors.white
                 ),
                 // NEW GAME BUTTON
                 const SizedBox(height: 32),
@@ -73,7 +73,7 @@ class TypeMaster extends StatelessWidget {
                       onPressed: () {
                         showDialog (
                           context: context,
-                          builder: (context) => const LeaderboardDialogBox()
+                          builder: (context) => LeaderboardDialogBox()
                         );
                       },
                       style: homeButtonStyle,

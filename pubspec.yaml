@@ -17,6 +17,7 @@ dependencies:
   stroke_text: any
   google_fonts: ^6.1.0
   cupertino_icons: ^1.0.8
+  animated_toggle_switch:
 
 dev_dependencies:
   flutter_test:

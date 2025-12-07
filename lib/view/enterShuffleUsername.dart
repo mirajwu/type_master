@@ -6,8 +6,15 @@ import '/view/newGame.dart';
 
 void main() => runApp(NewGame());
 
-class NewGame extends StatelessWidget {
-  const NewGame({super.key});
+class Shuffle extends StatefulWidget {
+  const Shuffle({super.key});
+
+  @override
+  State<Shuffle> createState() => _ShuffleState();
+}
+
+class _ShuffleState extends State<Shuffle> {
+  final TextEditingController _usernameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +35,31 @@ class NewGame extends StatelessWidget {
               ),
               child: Column (
                 children: [
+                  // BACK BUTTON
+                    SizedBox(
+                      height: 128,
+                      width: 400,
+                      child: Row (
+                        children: [
+                          OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              padding: const EdgeInsets.all(8),
+                              shape: const CircleBorder(),
+                              backgroundColor: Colors.transparent,
+                              side: BorderSide.none
+                            ),
+                            onPressed: () => Navigator.pop(context),
+                            child: Icon(
+                              Icons.arrow_back_ios_new_rounded,
+                              color: Colors.white,
+                              size: 32,
+                            )
+                          ),
+                        ],
+                      ),
+                    ),
                   // TEXT
-                  const SizedBox(height: 148),
+                  const SizedBox(height: 161),
                   Text(
                       'ENTER USERNAME',
                       style: TextStyle(
@@ -45,19 +75,45 @@ class NewGame extends StatelessWidget {
                       thickness: 1,
                       indent: 15,
                       endIndent: 15,
-                      color: Colors.grey
+                      color: Colors.white
                   ),
-
-                  // EXIT BUTTON
-                  const SizedBox(height: 32),
+                  // USERNAME INPUT
                   SizedBox(
-                      width: 300,
-                      height: 75,
+                    width: 350,
+                    height: 100,
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      margin: const EdgeInsets.only(top: 16),
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Color(0xFF836FB7),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: TextFormField(
+                        style: TextStyle(
+                          color: Colors.white
+                        ),
+                        cursorColor: Colors.white,
+                        controller: _usernameController,
+                        decoration: InputDecoration(
+                          hintText: 'Username',
+                          hintStyle: TextStyle(color: Colors.white),
+                          border: InputBorder.none
+                        ),
+                      )
+                    ),
+                  ),
+                  // START BUTTON
+                  const SizedBox(height: 16),
+                  SizedBox(
+                      width: 150,
+                      height: 50,
                       child:
                       ElevatedButton(
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () {},
                         style: homeButtonStyle,
-                        child: Text('Back'),
+                        child: Text('Start'),
                       )
                   ),
                 ],

@@ -1,9 +1,31 @@
+import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'styles/textStyles.dart';
 
-class LeaderboardDialogBox  extends StatelessWidget {
+class LeaderboardDialogBox extends StatefulWidget {
   const LeaderboardDialogBox({super.key});
+
+  @override
+  State<LeaderboardDialogBox> createState() => _LeaderboardDialogBoxState();
+}
+
+class _LeaderboardDialogBoxState  extends State<LeaderboardDialogBox> with SingleTickerProviderStateMixin{
+
+  bool leaderboardSwitchValue = false;
+  late TabController tabController;
+
+  @override
+  void initState() {
+    tabController = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose(){
+    tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,31 +51,24 @@ class LeaderboardDialogBox  extends StatelessWidget {
                         fontWeight: FontWeight.bold
                     ),
                   ),
-                  Row (
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      TextButton(
-                        onPressed: () {},
-                        style: TextButton.styleFrom (
-                          foregroundColor: Colors.white,
-                        ),
-                        child: Text('Shuffle'),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        style: TextButton.styleFrom (
-                          foregroundColor: Colors.white,
-                        ),
-                        child: Text('Paragraphs'),
-                      )
-                    ],
+                  TabBar(
+                    labelColor: Color(0xFFB096F7),
+                    unselectedLabelColor: Colors.grey,
+                    indicatorColor: Color(0xFFB096F7),
+                    indicatorWeight: 4,
+                    dividerColor: Colors.transparent,
+                    controller: tabController,
+                    tabs: [
+                      Tab(text: 'Shuffle',),
+                      Tab(text: 'Paragraphs'),
+                    ]
                   ),
                   const Divider(
                       height: 0,
                       thickness: 1,
                       indent: 25,
                       endIndent: 25,
-                      color: Colors.grey
+                      color: Colors.white
                   ),
                   const SizedBox(height: 24),
                   SizedBox(
@@ -87,7 +102,7 @@ class LeaderboardDialogBox  extends StatelessWidget {
                                       Text('2. Matt',
                                           style: leaderboardTextStyle
                                       ),
-                                      Text('70 WPM',
+                                      Text('90 WPM',
                                           style: leaderboardTextStyle
                                       ),
                                     ]
@@ -99,7 +114,7 @@ class LeaderboardDialogBox  extends StatelessWidget {
                                       Text('3. Taro',
                                           style: leaderboardTextStyle
                                       ),
-                                      Text('90 WPM',
+                                      Text('70 WPM',
                                           style: leaderboardTextStyle
                                       ),
                                     ]
