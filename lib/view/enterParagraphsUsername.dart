@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:type_master_game/view/enterShuffleUsername.dart';
 import 'styles/buttonStyles.dart';
 import 'styles/textStyles.dart';
+import '/view/newGame.dart';
 
 void main() => runApp(NewGame());
 
-class NewGame extends StatelessWidget {
-  const NewGame({super.key});
+class Shuffle extends StatefulWidget {
+  const Shuffle({super.key});
+
+  @override
+  State<Shuffle> createState() => _ShuffleState();
+}
+
+class _ShuffleState extends State<Shuffle> {
+  final TextEditingController _usernameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +35,7 @@ class NewGame extends StatelessWidget {
               ),
               child: Column (
                 children: [
+                  // BACK BUTTON
                   SizedBox(
                     height: 128,
                     width: 400,
@@ -51,11 +59,11 @@ class NewGame extends StatelessWidget {
                     ),
                   ),
                   // TEXT
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 161),
                   Text(
-                      'GAME MODE',
+                      'ENTER USERNAME',
                       style: TextStyle(
-                        fontSize: 48,
+                        fontSize: 32,
                         fontWeight: FontWeight.bold,
                         foreground: Paint()
                           ..shader = gradientText,
@@ -69,30 +77,41 @@ class NewGame extends StatelessWidget {
                       endIndent: 15,
                       color: Colors.white
                   ),
-                  // NEW GAME BUTTON
-                  const SizedBox(height: 20),
+                  // USERNAME INPUT
                   SizedBox(
-                      width: 300,
-                      height: 75,
-                      child:
-                      ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Shuffle()));
-                          },
-                        style: homeButtonStyle,
-                        child: Text('Shuffle'),
-                      )
+                    width: 350,
+                    height: 80,
+                    child: Container(
+                        margin: const EdgeInsets.only(top: 16),
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Color(0xFF836FB7),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: TextFormField(
+                          style: TextStyle(
+                              color: Colors.white
+                          ),
+                          cursorColor: Colors.white,
+                          controller: _usernameController,
+                          decoration: InputDecoration(
+                              hintText: 'Username',
+                              hintStyle: TextStyle(color: Colors.white),
+                              border: InputBorder.none
+                          ),
+                        )
+                    ),
                   ),
-                  // CREDITS BUTTON
-                  const SizedBox(height: 32),
+                  // START BUTTON
+                  const SizedBox(height: 16),
                   SizedBox(
-                      width: 300,
-                      height: 75,
+                      width: 150,
+                      height: 50,
                       child:
                       ElevatedButton(
                         onPressed: () {},
                         style: homeButtonStyle,
-                        child: Text('Paragraphs'),
+                        child: Text('Start'),
                       )
                   ),
                 ],
