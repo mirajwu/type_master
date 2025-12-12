@@ -15,13 +15,11 @@ class _GameScreenState extends State<GameScreen> {
   final TextEditingController _inputController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   final ScrollController _scrollController = ScrollController();
-  final GlobalKey _textKey = GlobalKey(); // Key for the RichText container
+  final GlobalKey _textKey = GlobalKey();
 
-  // THIS FIXES THE BUG
   void _scrollToCursor(String text, int currentIndex) {
     if (!_scrollController.hasClients) return;
 
-    // 1. Create a TextPainter with the exact same styles as the UI
     final textPainter = TextPainter(
       text: TextSpan(
         text: text,
@@ -30,19 +28,15 @@ class _GameScreenState extends State<GameScreen> {
       textDirection: TextDirection.ltr,
     );
 
-    // 2. Layout the text constrained by the screen width
-    // We assume a padding of 40 (20 left + 20 right)
     final screenWidth = MediaQuery.of(context).size.width - 40;
     textPainter.layout(maxWidth: screenWidth);
 
-    // 3. Get the exact (x, y) offset of the cursor
     final cursorOffset = textPainter.getOffsetForCaret(
       TextPosition(offset: currentIndex),
       Rect.zero,
     );
 
-    // 4. Scroll so the cursor is roughly in the middle of the box
-    final double targetScroll = cursorOffset.dy - 100; // Keep 100px padding above cursor
+    final double targetScroll = cursorOffset.dy - 100;
 
     _scrollController.animateTo(
       targetScroll.clamp(0.0, _scrollController.position.maxScrollExtent),
@@ -55,7 +49,6 @@ class _GameScreenState extends State<GameScreen> {
   Widget build(BuildContext context) {
     final controller = Provider.of<GameController>(context);
 
-    // Navigate to Results when time is up
     if (controller.timeLeft <= 0 && !controller.isPlaying && !controller.isCountdown) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const ResultScreen()));
@@ -72,7 +65,6 @@ class _GameScreenState extends State<GameScreen> {
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
-                    // Header
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -83,7 +75,6 @@ class _GameScreenState extends State<GameScreen> {
                     ),
                     const SizedBox(height: 20),
 
-                    // Timer
                     Text("0:${controller.timeLeft.toString().padLeft(2, '0')}",
                         style: const TextStyle(fontSize: 60, fontWeight: FontWeight.bold, color: Colors.white)),
 
@@ -95,7 +86,6 @@ class _GameScreenState extends State<GameScreen> {
 
                     const SizedBox(height: 40),
 
-                    // TYPING AREA
                     Expanded(
                       child: GestureDetector(
                         onTap: () {
@@ -116,18 +106,15 @@ class _GameScreenState extends State<GameScreen> {
                               text: TextSpan(
                                 style: const TextStyle(fontSize: 28, fontFamily: 'Courier', height: 1.5, color: Colors.white38),
                                 children: [
-                                  // Correctly typed part
                                   TextSpan(
                                     text: controller.currentText.substring(0, controller.currentIndex),
                                     style: const TextStyle(color: kPrimaryCyan, fontWeight: FontWeight.bold),
                                   ),
-                                  // Current character cursor
                                   if (controller.currentIndex < controller.currentText.length)
                                     TextSpan(
                                       text: controller.currentText[controller.currentIndex],
                                       style: const TextStyle(color: Colors.white, backgroundColor: Color(0xFF6E61AB)),
                                     ),
-                                  // Remaining text
                                   if (controller.currentIndex + 1 < controller.currentText.length)
                                     TextSpan(
                                       text: controller.currentText.substring(controller.currentIndex + 1),
@@ -147,7 +134,6 @@ class _GameScreenState extends State<GameScreen> {
               ),
             ),
 
-            // START OVERLAY
             if (!controller.isPlaying)
               Container(
                 color: Colors.black87,
@@ -165,7 +151,6 @@ class _GameScreenState extends State<GameScreen> {
                 ),
               ),
 
-            // HIDDEN INPUT
             Opacity(
               opacity: 0,
               child: TextField(

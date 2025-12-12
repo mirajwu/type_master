@@ -24,7 +24,6 @@ class HomePage extends StatelessWidget {
               const Divider(color: Colors.white, indent: 15, endIndent: 15),
               const SizedBox(height: 32),
 
-              // NEW GAME
               SizedBox(
                 width: 300, height: 75,
                 child: ElevatedButton(
@@ -35,7 +34,6 @@ class HomePage extends StatelessWidget {
               ),
 
               const SizedBox(height: 32),
-              // LEADERBOARD
               SizedBox(
                 width: 300, height: 75,
                 child: ElevatedButton(
@@ -46,7 +44,6 @@ class HomePage extends StatelessWidget {
               ),
 
               const SizedBox(height: 32),
-              // CREDITS
               SizedBox(
                 width: 300, height: 75,
                 child: ElevatedButton(
@@ -57,7 +54,6 @@ class HomePage extends StatelessWidget {
               ),
 
               const SizedBox(height: 32),
-              // EXIT
               SizedBox(
                 width: 300, height: 75,
                 child: ElevatedButton(

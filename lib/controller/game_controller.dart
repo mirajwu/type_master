@@ -7,17 +7,14 @@ import 'package:english_words/english_words.dart';
 import '../model/score_entry.dart';
 
 class GameController extends ChangeNotifier {
-  // Persistence Keys
   static const String _keyScores = 'scores';
   static const String _keyLastUser = 'last_user';
 
-  // Game State
   String currentText = "";
   int currentIndex = 0;
   int errors = 0;
   int timeLeft = 60;
 
-  // Status
   bool isPlaying = false;
   bool isCountdown = false;
   int countdownVal = 3;
@@ -29,14 +26,12 @@ class GameController extends ChangeNotifier {
   String username = "Player 1";
   List<String> _allPhrases = [];
 
-  // Computed WPM
   int get wpm {
     double timeElapsedMinutes = (60 - timeLeft) / 60;
     if (timeElapsedMinutes <= 0 || currentIndex == 0) return 0;
     return ((currentIndex / 5) / timeElapsedMinutes).round();
   }
 
-  // --- Persistence ---
   Future<void> loadUser() async {
     final prefs = await SharedPreferences.getInstance();
     username = prefs.getString(_keyLastUser) ?? "Player 1";
@@ -71,7 +66,6 @@ class GameController extends ChangeNotifier {
     await prefs.setStringList(_keyScores, list);
   }
 
-  // --- Game Logic ---
   Future<void> initGame(String mode) async {
     currentMode = mode;
     errors = 0;
@@ -85,13 +79,11 @@ class GameController extends ChangeNotifier {
         String fileText = await rootBundle.loadString('assets/phrases.txt');
         _allPhrases = fileText.split('\n').where((p) => p.trim().isNotEmpty).toList();
         _allPhrases.shuffle();
-        // Generate a long string
         currentText = _allPhrases.take(50).join(" ");
       } catch (e) {
         currentText = "The quick brown fox jumps over the lazy dog. " * 10;
       }
     } else {
-      // Shuffle Mode
       List<String> words = generateWordPairs().take(100).map((e) => "${e.first} ${e.second}").toList();
       currentText = words.join(" ");
     }

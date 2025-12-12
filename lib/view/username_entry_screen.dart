@@ -18,7 +18,6 @@ class _UsernameEntryScreenState extends State<UsernameEntryScreen> {
   @override
   void initState() {
     super.initState();
-    // Pre-fill with last saved username
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final lastUser = Provider.of<GameController>(context, listen: false).username;
       _usernameController.text = lastUser;

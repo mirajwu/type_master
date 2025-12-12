@@ -6,7 +6,6 @@ import '../styles/app_styles.dart';
 import '../controller/game_controller.dart';
 import '../model/score_entry.dart';
 
-// --- LEADERBOARD DIALOG ---
 class LeaderboardDialogBox extends StatefulWidget {
   const LeaderboardDialogBox({super.key});
 
@@ -102,7 +101,6 @@ class _LeaderboardDialogBoxState extends State<LeaderboardDialogBox> with Single
   }
 }
 
-// --- CREDITS DIALOG ---
 class CreditsDialogBox extends StatelessWidget {
   const CreditsDialogBox({super.key});
 

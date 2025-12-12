@@ -13,7 +13,6 @@ class ModeSelectionScreen extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 60),
-            // Back Button
             Align(
               alignment: Alignment.centerLeft,
               child: IconButton(
@@ -30,7 +29,6 @@ class ModeSelectionScreen extends StatelessWidget {
             const Divider(color: Colors.white, indent: 15, endIndent: 15),
             const SizedBox(height: 50),
 
-            // SHUFFLE
             SizedBox(
               width: 300, height: 75,
               child: ElevatedButton(
@@ -44,7 +42,6 @@ class ModeSelectionScreen extends StatelessWidget {
             ),
             const SizedBox(height: 32),
 
-            // PARAGRAPHS
             SizedBox(
               width: 300, height: 75,
               child: ElevatedButton(
