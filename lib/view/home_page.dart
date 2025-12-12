@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
                   )),
               const Divider(color: Colors.white, indent: 15, endIndent: 15),
               const SizedBox(height: 32),
-
+              // NEW GAME BUTTON
               SizedBox(
                 width: 300, height: 75,
                 child: ElevatedButton(
@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
                   child: const Text('New Game'),
                 ),
               ),
-
+              // LEADERBOARD BUTTON
               const SizedBox(height: 32),
               SizedBox(
                 width: 300, height: 75,
@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
                   child: const Text('Leaderboard'),
                 ),
               ),
-
+              // CREDITS BUTTON
               const SizedBox(height: 32),
               SizedBox(
                 width: 300, height: 75,
@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
                   child: const Text('Credits'),
                 ),
               ),
-
+              // EXIT BUTTON
               const SizedBox(height: 32),
               SizedBox(
                 width: 300, height: 75,

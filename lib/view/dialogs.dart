@@ -143,7 +143,6 @@ class CreditsDialogBox extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () async {
           final Uri uri = Uri.parse(url);
-          // FIX: Launch directly with externalApplication mode to ensure it opens in the browser.
           if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
             debugPrint("Could not launch $url");
           }
